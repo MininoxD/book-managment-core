@@ -127,6 +127,25 @@ docker ps
 
 ---
 
+## Configuración de la base de datos
+
+La conexión a la base de datos PostgreSQL se configura en el archivo `database.providers.ts`. Es importante asegurarse de que los valores de configuración sean correctos para el entorno en el que se ejecuta la aplicación.
+
+### Configuración en `database.providers.ts`
+
+En el archivo `database.providers.ts`, los valores de conexión se definen en la instancia de Sequelize:
+
+```typescript
+const sequelize = new Sequelize({
+  dialect: 'postgres',
+  host: 'postgres', // Cambiar a 'localhost' si se usa el host local
+  port: 5432, // Puerto de PostgreSQL
+  username: 'admin', // Usuario de la base de datos
+  password: 'admin', // Contraseña de la base de datos
+  database: 'cmpc_books' // Nombre de la base de datos
+})
+```
+
 ## Acceso a la aplicación
 
 - **API**: Disponible en `http://localhost:4000`.
