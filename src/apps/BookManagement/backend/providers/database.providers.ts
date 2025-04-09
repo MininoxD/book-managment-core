@@ -28,7 +28,7 @@ export const databaseProviders = [
       await sequelize.sync({
         alter: true
       })
-      /* await populateInitialData() */
+      await populateInitialData()
       return sequelize
     }
   }

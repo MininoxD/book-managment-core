@@ -40,3 +40,106 @@ La arquitectura hexagonal, también conocida como **Ports and Adapters**, organi
 4. **Entradas y salidas**:
    - **Entradas**: Controladores que exponen la API REST (por ejemplo, `BookController`).
    - **Salidas**: Adaptadores para interactuar con la base de datos o servicios externos.
+
+---
+
+## Datos iniciales
+
+La aplicación incluye un método llamado `populateInitialData` que se utiliza para insertar datos iniciales en la base de datos, como usuarios, autores, géneros, etc. Este método se encuentra en el archivo `database.providers.ts` y se ejecuta automáticamente al iniciar la aplicación.
+
+### Uso en desarrollo
+
+En entornos de desarrollo, este método es útil para poblar la base de datos con datos de prueba. Por defecto, está habilitado en el archivo `database.providers.ts`:
+
+```typescript
+await populateInitialData()
+```
+
+### Uso en producción
+
+En entornos de producción, **se recomienda comentar o eliminar esta línea** para evitar que se inserten datos de prueba en la base de datos:
+
+```typescript
+/* await populateInitialData(); */
+```
+
+Esto asegura que la base de datos no se sobrescriba o contenga datos no deseados en producción.
+
+---
+
+## Comandos de `npm`
+
+### Instalar dependencias
+
+```bash
+npm install
+```
+
+### Ejecutar en modo desarrollo
+
+```bash
+npm run start:dev
+```
+
+### Ejecutar en modo producción
+
+1. Compilar el proyecto:
+   ```bash
+   npm run build
+   ```
+2. Ejecutar el proyecto:
+   ```bash
+   npm run start:prod
+   ```
+
+### Ejecutar pruebas
+
+```bash
+npm run test
+```
+
+---
+
+## Comandos de `docker-compose`
+
+### Levantar los servicios
+
+```bash
+docker-compose up --build
+```
+
+Esto levantará:
+
+- Un contenedor para PostgreSQL.
+- Un contenedor para la aplicación NestJS.
+
+### Detener los servicios
+
+```bash
+docker-compose down
+```
+
+### Verificar los contenedores en ejecución
+
+```bash
+docker ps
+```
+
+---
+
+## Acceso a la aplicación
+
+- **API**: Disponible en `http://localhost:4000`.
+- **Swagger**: Documentación de la API disponible en `http://localhost:4000/api`.
+
+---
+
+---
+
+## Diagrama de la base de datos
+
+A continuación se muestra el diagrama de las tablas relacionadas en la base de datos:
+
+![Diagrama de la base de datos](./relation_tables.png)
+
+---
